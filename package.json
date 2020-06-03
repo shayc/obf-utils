@@ -1,6 +1,6 @@
 {
   "name": "@shayc/obf-utils",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Open Board Format utility library.",
   "keywords": [],
   "main": "dist/obf-utils.umd.js",
