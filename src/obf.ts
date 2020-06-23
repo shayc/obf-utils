@@ -5,7 +5,7 @@ export function denormalizeBoardSet(boardSet: BoardSet) {
   const { boards } = boardSet
   const denormalizedBoards: { [key: string]: object } = {}
 
-  Object.keys(boards).forEach(key => {
+  Object.keys(boards).forEach((key) => {
     denormalizedBoards[key] = denormalizeBoard(boards[key], boardSet)
   })
 
@@ -25,38 +25,20 @@ export function getBoardByPath(path: string, boardSet: BoardSet) {
   return board || null
 }
 
+export function getBoards(boardSet: BoardSet) {
+  const boards = Object.values(boardSet.boards) || []
+
+  return boards
+}
+
 export function getRootBoard(boardSet: BoardSet) {
   return getBoardByPath(boardSet.manifest.root, boardSet)
 }
 
 export function shouldButtonsPositionedAbsolute(buttons: Button[]) {
-  return buttons.every(button => {
+  return buttons.every((button) => {
     const { top, left, width, height } = button
 
     return top && left && width && height
   })
-}
-
-export function getBoardsList(
-  boards: {
-    [key: string]: Board
-  },
-  rootId: string
-) {
-  const boardsList = Object.keys(boards)
-    .map(path => {
-      const { id, name } = boards[path]
-
-      const board = {
-        id: id,
-        name: name
-      }
-
-      return board
-    })
-    .sort((a, b) => {
-      return a.name.localeCompare(b.name, 'en', { sensitivity: 'base' })
-    })
-
-  return boardsList
 }
