@@ -53,7 +53,7 @@ export function getImageSrc(image: Image, assets: Assets): string {
 
 function getItemSrc<T extends { data: string; path: string; url: string }>(
   item: T,
-  assets: { [key: string]: string }
+  assets: Assets
 ): string {
   const data = item.data || assets[item.path] || item.url
 
