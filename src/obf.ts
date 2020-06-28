@@ -5,7 +5,7 @@ export function denormalizeBoardSet(boardSet: BoardSet) {
   const { boards } = boardSet
   const denormalizedBoards: { [key: string]: object } = {}
 
-  Object.keys(boards).forEach((key) => {
+  Object.keys(boards).forEach(key => {
     denormalizedBoards[key] = denormalizeBoard(boards[key], boardSet)
   })
 
@@ -35,10 +35,28 @@ export function getRootBoard(boardSet: BoardSet) {
   return getBoardByPath(boardSet.manifest.root, boardSet)
 }
 
+export function getBoardSetColors(boardSet: BoardSet) {
+  const boards = getBoards(boardSet)
+  const colors = boards.map(getBoardColors)
+
+  return colors
+}
+
 export function shouldButtonsPositionedAbsolute(buttons: Button[]) {
-  return buttons.every((button) => {
+  return buttons.every(button => {
     const { top, left, width, height } = button
 
     return top && left && width && height
   })
+}
+
+function getBoardColors(board: Board) {
+  const colors = board.buttons.map(button => {
+    return {
+      background: button.background_color,
+      border: button.border_color
+    }
+  })
+
+  return colors
 }
