@@ -1,13 +1,12 @@
+import { nanoid } from "nanoid";
+
 /**
  * Generates a unique ID for use in OBF objects.
  *
  * @returns A unique string ID
  */
 export function generateId(): string {
-  return (
-    Math.random().toString(36).slice(2, 10) +
-    Math.random().toString(36).slice(2, 10)
-  );
+  return nanoid();
 }
 
 /**
