@@ -16,6 +16,7 @@ export default [
         ecmaVersion: "latest",
       },
       globals: {
+        alert: "readonly",
         Buffer: "readonly",
         NodeJS: "readonly",
         console: "readonly",

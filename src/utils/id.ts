@@ -1,25 +1,12 @@
-import { randomUUID } from "crypto";
-import { isBrowser, isNode } from "./env";
-
 /**
  * Generates a unique ID for use in OBF objects.
- * Uses crypto.randomUUID() in Node.js and Web Crypto API in browsers.
  *
  * @returns A unique string ID
  */
 export function generateId(): string {
-  if (isNode()) {
-    return randomUUID();
-  }
-
-  if (isBrowser() && window.crypto && window.crypto.randomUUID) {
-    return window.crypto.randomUUID();
-  }
-
-  // Fallback for environments without Crypto API
   return (
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15)
+    Math.random().toString(36).slice(2, 10) +
+    Math.random().toString(36).slice(2, 10)
   );
 }
 

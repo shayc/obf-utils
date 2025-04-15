@@ -18,11 +18,9 @@ describe("ID utilities", () => {
       expect(id1).not.toBe(id2);
     });
 
-    it("returns a UUID-like string", () => {
+    it("returns an alphanumeric string", () => {
       const id = generateId();
-
-      // UUID format: 8-4-4-4-12 (hyphens separate groups of hex chars)
-      expect(id).toMatch(/^[0-9a-f-]+$/i);
+      expect(id).toMatch(/^[a-z0-9]+$/i);
     });
   });
 
