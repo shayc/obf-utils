@@ -23,7 +23,7 @@ function getDatabase(): Promise<IDBPDatabase> {
           db.createObjectStore(BOARD_STORE, { keyPath: "id" });
         }
         if (!db.objectStoreNames.contains(OBZ_STORE)) {
-          db.createObjectStore(OBZ_STORE, { keyPath: "manifest.format" });
+          db.createObjectStore(OBZ_STORE, { keyPath: "manifest.root" });
         }
       },
     }).catch((error) => {

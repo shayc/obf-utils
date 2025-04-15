@@ -18,9 +18,9 @@ describe("ID utilities", () => {
       expect(id1).not.toBe(id2);
     });
 
-    it("returns an alphanumeric string", () => {
+    it("returns a URL-friendly string", () => {
       const id = generateId();
-      expect(id).toMatch(/^[a-z0-9]+$/i);
+      expect(id).toMatch(/^[A-Za-z0-9_-]+$/);
     });
   });
 
