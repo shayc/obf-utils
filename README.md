@@ -12,6 +12,7 @@ Type-safe TypeScript utilities for working with the [Open Board Format](https://
 ```bash
 npm install obf-utils
 ```
+
 > Requires **Node.js >=20.0.0**
 
 ---
@@ -49,14 +50,11 @@ console.log(result.success ? "Valid!" : `Error: ${result.error}`);
 
 ## API Overview
 
-- Create, modify, and validate OBF boards and resources (buttons, images, sounds)
-- Pack/unpack OBZ (zip) files for board sharing
-- Type-safe, immutable API with full TypeScript support
-- Works in browsers (IndexedDB) and Node.js (filesystem)
-- Async storage and retrieval of boards/OBZs
-- Zod-based schema validation
-
-See [examples/](examples/) and [docs/open-board-format.md](docs/open-board-format.md) for full API details and usage patterns.
+- Immutable, type-safe API for OBF board manipulation (buttons, images, sounds)
+- OBZ (zip) pack/unpack for sharing
+- Works in browser (IndexedDB) and Node.js (fs)
+- Async storage support
+- Schema validation with Zod
 
 ---
 
@@ -64,7 +62,6 @@ See [examples/](examples/) and [docs/open-board-format.md](docs/open-board-forma
 
 - [Examples](examples/)
 - [OBF Specification](docs/open-board-format.md)
-- [Full Documentation & Issues](https://github.com/shayc/obf-utils)
 
 ---
 
