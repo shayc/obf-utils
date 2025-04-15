@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { buttonSchema } from "./button";
+import { idSchema, licenseSchema, OBF_FORMAT_VERSION } from "./common";
 import { gridSchema } from "./grid";
 import { imageSchema } from "./image";
 import { soundSchema } from "./sound";
-import { licenseSchema, OBF_FORMAT_VERSION } from "./common";
 
 // String lists for localization
 const stringsSchema = z
@@ -18,7 +18,7 @@ export const boardSchema = z
   .object({
     // Core attributes
     format: z.literal(OBF_FORMAT_VERSION),
-    id: z.string(),
+    id: idSchema,
     locale: z.string(),
     name: z.string(),
 

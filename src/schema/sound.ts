@@ -1,10 +1,11 @@
 import { z } from "zod";
+import { idSchema } from "./common";
 import { licenseSchema } from "./common";
 
 // Sound schema
 export const soundSchema = z
   .object({
-    id: z.string(),
+    id: idSchema,
 
     // One of the following must be provided
     url: z.string().url().optional(),

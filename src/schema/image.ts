@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { licenseSchema } from "./common";
+import { licenseSchema, idSchema } from "./common";
 
 // Symbol schema for proprietary symbol sets
 const symbolSchema = z
@@ -12,7 +12,7 @@ const symbolSchema = z
 // Image schema
 export const imageSchema = z
   .object({
-    id: z.string(),
+    id: idSchema,
 
     // One of the following must be provided
     url: z.string().url().optional(),

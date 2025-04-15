@@ -1,11 +1,12 @@
 import { z } from "zod";
+import { idSchema } from "./common";
 
 // Grid schema
 export const gridSchema = z
   .object({
     rows: z.number().int().positive(),
     columns: z.number().int().positive(),
-    order: z.array(z.array(z.string().or(z.null()))),
+    order: z.array(z.array(idSchema.or(z.null()))),
   })
   .refine(
     (grid) => {

@@ -1,12 +1,12 @@
-export const OBF_FORMAT_VERSION = "open-board-0.1";
 import { z } from "zod";
 
-// Common regex patterns
+export const OBF_FORMAT_VERSION = "open-board-0.1";
 export const rgbColorRegex = /^rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)$/;
 export const rgbaColorRegex =
   /^rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*(?:0|0?\.\d+|1(?:\.0)?)\s*\)$/;
 
-// Common schema components
+export const idSchema = z.coerce.string();
+
 export const colorSchema = z
   .string()
   .regex(rgbColorRegex)

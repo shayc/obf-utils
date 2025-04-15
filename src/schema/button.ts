@@ -1,9 +1,8 @@
 import { z } from "zod";
-import { colorSchema } from "./common";
+import { colorSchema, idSchema } from "./common";
 
-// Load board schema for linking to other boards
 const loadBoardSchema = z.object({
-  id: z.string().optional(),
+  id: idSchema.optional(),
   name: z.string().optional(),
   data_url: z.string().url().optional(),
   url: z.string().url().optional(),
@@ -13,7 +12,7 @@ const loadBoardSchema = z.object({
 // Button schema
 export const buttonSchema = z
   .object({
-    id: z.string(),
+    id: idSchema,
 
     // Content
     label: z.string().optional(),
