@@ -5,10 +5,12 @@ import { gridSchema } from "./grid";
 import { imageSchema } from "./image";
 import { soundSchema } from "./sound";
 
+const localeSchema = z.string();
+
 // String lists for localization
 const stringsSchema = z
   .record(
-    z.string(), // locale
+    localeSchema,
     z.record(z.string(), z.string()), // key-value pairs
   )
   .optional();
@@ -19,7 +21,7 @@ export const boardSchema = z
     // Core attributes
     format: z.literal(OBF_FORMAT_VERSION),
     id: idSchema,
-    locale: z.string(),
+    locale: localeSchema,
     name: z.string(),
 
     // Optional attributes
