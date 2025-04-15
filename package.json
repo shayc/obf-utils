@@ -1,10 +1,10 @@
 {
   "name": "obf-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TypeScript utility library for working with the Open Board Format (OBF) standard",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shayc/obf-utils.git"
+    "url": "git+https://github.com/shayc/obf-utils.git"
   },
   "author": "Shay Cojocaru",
   "license": "MIT",
