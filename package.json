@@ -1,0 +1,79 @@
+{
+  "name": "obf-utils",
+  "version": "0.1.0",
+  "description": "TypeScript utility library for working with the Open Board Format (OBF) standard",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shayc/obf-utils.git"
+  },
+  "author": "Shay Cojocaru",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.build.json",
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint 'src/**/*.ts' --fix",
+    "format": "prettier --write .",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish",
+    "prepare": "husky",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "obf",
+    "obz",
+    "open-board-format",
+    "aac",
+    "augmentative-alternative-communication"
+  ],
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "idb": "^8.0.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.1",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@types/node": "^20.17.30",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
+    "@vitest/coverage-v8": "^3.1.1",
+    "eslint": "^9.24.0",
+    "eslint-config-prettier": "^10.1.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "prettier": "3.5.3",
+    "typescript": "^5.8.3",
+    "vite": "^6.2.6",
+    "vitest": "^3.1.1"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

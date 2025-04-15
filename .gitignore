@@ -1,0 +1,26 @@
+# Logs
+*.log
+
+# Dependencies
+node_modules
+
+# Build output
+dist
+
+# Testing
+coverage
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment variables
+.env*

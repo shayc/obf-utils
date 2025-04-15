@@ -1,0 +1,5 @@
+# Ignore everything...
+*
+
+# ...except dist (which is included via "files" in package.json)
+!dist
