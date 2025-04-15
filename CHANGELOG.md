@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+### Patch Changes
+
+- c41f904: docs: update readme.md
+
 ## 0.1.1
 
 ### Patch Changes
