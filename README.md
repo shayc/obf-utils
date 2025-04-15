@@ -1,46 +1,5 @@
 # OBF Utils
 
-## Release & Commit Workflow
-
-This project uses a modern, automated workflow for releases and code quality:
-
-- **Conventional Commits**: All commit messages must follow the [Conventional Commits](https://www.conventionalcommits.org/) standard. This is enforced by commitlint.
-- **Pre-commit checks**: Linting and formatting are automatically run on staged files via Husky and lint-staged.
-- **Automated versioning & changelog**: [Changesets](https://github.com/changesets/changesets) manages version bumps and changelog entries.
-
-### Making a Release
-
-1. **Create a changeset**  
-   Run:  
-   ```bash
-   npm run changeset
-   ```
-   Follow the prompts to describe your changes and select the version bump.
-
-2. **Commit your changes**  
-   Commit as usual. The commit message must follow Conventional Commits.
-
-3. **Version and changelog update**  
-   When ready to release, run:  
-   ```bash
-   npm run version-packages
-   ```
-   This will update the version and changelog.
-
-4. **Publish**  
-   Push your changes and tags, then publish:  
-   ```bash
-   git push --follow-tags
-   npm run release
-   ```
-
-### Pre-commit checks
-
-- On commit, ESLint and Prettier will run on staged files.
-- Commit messages are checked for Conventional Commits compliance.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
-
 [![npm version](https://img.shields.io/npm/v/obf-utils.svg)](https://www.npmjs.com/package/obf-utils)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -48,21 +7,32 @@ A type-safe TypeScript utility library for working with the [Open Board Format](
 
 ---
 
-## Why use OBF Utils?
+## Table of Contents
+
+- [Features & Benefits](#features--benefits)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Usage & API](#usage--api)
+- [Architecture](#architecture)
+- [Documentation & Resources](#documentation--resources)
+- [Environment Support](#environment-support)
+- [Community & Support](#community--support)
+- [Contributing](#contributing)
+- [Changelog](#changelog)
+- [License](#license)
+
+---
+
+## Features & Benefits
 
 - **Universal**: Read, create, and modify OBF/OBZ files for AAC board sharing.
 - **Type-Safe**: Immutable API with full TypeScript support.
 - **Cross-Platform**: Works in browsers and Node.js.
 - **Open Source**: MIT licensed, easy to contribute to.
-
----
-
-## Features
-
-- **Validate**, create, and modify boards, buttons, images, and layouts
-- **Pack/Unpack** OBZ (zip) files
-- **Persist** boards in browser or Node.js storage
-- **Schemas and validation** with Zod
+- **Validate**, create, and modify boards, buttons, images, and layouts.
+- **Pack/Unpack** OBZ (zip) files.
+- **Persist** boards in browser or Node.js storage.
+- **Schemas and validation** with Zod.
 
 ---
 
@@ -71,7 +41,6 @@ A type-safe TypeScript utility library for working with the [Open Board Format](
 ```bash
 npm install obf-utils
 ```
-
 - Requires **Node.js >=20.0.0**
 
 ---
@@ -107,7 +76,9 @@ console.log(result.success ? "Valid!" : `Error: ${result.error}`);
 
 ---
 
-## Core Concepts
+## Usage & API
+
+### Core Concepts
 
 - **Board**: Grid layout with buttons and resources.
 - **Button**: Interactive board element.
@@ -115,16 +86,13 @@ console.log(result.success ? "Valid!" : `Error: ${result.error}`);
 - **OBZ**: Zipped OBF package.
 - **Manifest**: OBZ metadata file.
 
----
+### API Overview
 
-## API Overview
-
-### Board Manipulation
+#### Board Manipulation
 
 | Function                                | Description                            |
 | --------------------------------------- | -------------------------------------- |
 | `createBoard(options)`                  | Create a new board.                    |
-| `createBoardFromData(data)`             | Create a board from partial data.      |
 | `addButton(board, button)`              | Add a button to a board.               |
 | `updateButton(board, buttonId, button)` | Update a button on a board.            |
 | `removeButton(board, buttonId)`         | Remove a button from a board.          |
@@ -136,9 +104,8 @@ console.log(result.success ? "Valid!" : `Error: ${result.error}`);
 | `removeSound(board, soundId)`           | Remove a sound from a board.           |
 | `updateGrid(board, { rows, columns })`  | Change the board's grid size.          |
 | `validateBoard(board)`                  | Validate a board against the OBF spec. |
-| `validateBoardOrThrow(board)`           | Validate a board or throw on error.    |
 
-### OBZ & Manifest Manipulation
+#### OBZ & Manifest Manipulation
 
 | Function                                     | Description                                |
 | -------------------------------------------- | ------------------------------------------ |
@@ -151,12 +118,9 @@ console.log(result.success ? "Valid!" : `Error: ${result.error}`);
 | `addBoardToManifest(manifest, board)`        | Add a board to a manifest.                 |
 | `removeBoardFromManifest(manifest, boardId)` | Remove a board from a manifest.            |
 | `validateManifest(manifest)`                 | Validate a manifest.                       |
-| `validateManifestOrThrow(manifest)`          | Validate a manifest or throw on error.     |
 | `validateObz(obz)`                           | Validate an OBZ package.                   |
-| `validateObzOrThrow(obz)`                    | Validate an OBZ package or throw on error. |
-| `validateObzIdUniqueness(obz)`               | Check for unique IDs in OBZ.               |
 
-### Storage (Browser & Node.js)
+#### Storage (Browser & Node.js)
 
 | Function                 | Description                      |
 | ------------------------ | -------------------------------- |
@@ -170,26 +134,23 @@ console.log(result.success ? "Valid!" : `Error: ${result.error}`);
 | `deleteObz(id)`          | Delete an OBZ by ID (async).     |
 | `listObzs()`             | List all saved OBZs (async).     |
 
-### Archive (Packing/Unpacking)
+#### Archive (Packing/Unpacking)
 
 | Function                  | Description                                          |
 | ------------------------- | ---------------------------------------------------- |
 | `packObz(boards)`         | Pack boards/resources into an OBZ file (Uint8Array). |
-| `packObzObject(obz)`      | Pack an OBZ object into a file (Uint8Array).         |
 | `unpackObz(data)`         | Unpack an OBZ file into boards/resources.            |
-| `unpackToObzObject(data)` | Unpack an OBZ file into an OBZ object.               |
 
-### Utilities
+#### Utilities
 
 | Function                       | Description                              |
 | ------------------------------ | ---------------------------------------- |
 | `detectEnvironment()`          | Detect if running in browser or Node.js. |
 | `isBrowser()`, `isNode()`      | Environment checks.                      |
 | `generateId()`                 | Generate a random ID.                    |
-| `isIdUsed(id, collection)`     | Check if an ID is used in a collection.  |
 | `generateUniqueId(collection)` | Generate a unique ID for a collection.   |
 
-### Errors
+#### Errors
 
 | Class             | Description                          |
 | ----------------- | ------------------------------------ |
@@ -204,9 +165,10 @@ See [examples/](examples/) for more usage patterns and details.
 
 ---
 
-## Advanced Usage
+### Advanced Usage
 
-### Packing & Unpacking OBZ Files
+<details>
+<summary>Packing & Unpacking OBZ Files</summary>
 
 ```typescript
 import { packObz, unpackObz } from "obf-utils";
@@ -216,8 +178,10 @@ const { boards, manifest } = unpackObz(obzData);
 console.log(`Root board: ${manifest.root}`);
 console.log(`Number of boards: ${Object.keys(boards).length}`);
 ```
+</details>
 
-### Async Persistence
+<details>
+<summary>Async Persistence</summary>
 
 ```typescript
 import { saveBoard, loadBoard } from "obf-utils";
@@ -225,14 +189,17 @@ import { saveBoard, loadBoard } from "obf-utils";
 await saveBoard(boardWithButton);
 const loadedBoard = await loadBoard(boardWithButton.id);
 ```
+</details>
 
-### Modifying Boards
+<details>
+<summary>Modifying Boards</summary>
 
 ```typescript
 import { updateGrid } from "obf-utils";
 
 const largerBoard = updateGrid(boardWithButton, { rows: 3, columns: 3 });
 ```
+</details>
 
 ---
 
@@ -247,7 +214,6 @@ src/
 ├── utils/     # Utility functions (ID, env)
 └── errors/    # Custom error classes
 ```
-
 All APIs are **immutable** and **type-safe**. Validation uses [Zod](https://zod.dev/).
 
 ---
@@ -267,36 +233,16 @@ All APIs are **immutable** and **type-safe**. Validation uses [Zod](https://zod.
 
 ---
 
+## Community & Support
+
+- Open an [issue](https://github.com/shayc/obf-utils/issues) for help or questions.
+- Maintained by [Shay Cojocaru](https://github.com/shayc).
+
+---
+
 ## Contributing
 
-1. **Clone the repo:**
-   ```bash
-   git clone https://github.com/shayc/obf-utils.git
-   cd obf-utils
-   ```
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-3. **Run the dev server:**
-   ```bash
-   npm run dev
-   ```
-4. **Build the project:**
-   ```bash
-   npm run build
-   ```
-5. **Run tests:**
-   ```bash
-   npm test
-   ```
-6. **Lint & format:**
-   ```bash
-   npm run lint
-   npm run format
-   ```
-
-Open issues or PRs for bugs, features, or improvements. By contributing, you agree to follow the project's code of conduct.
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines, code of conduct, and the release/commit workflow.
 
 ---
 
@@ -309,10 +255,3 @@ See [Releases](https://github.com/shayc/obf-utils/releases) for version history.
 ## License
 
 MIT
-
----
-
-## Community & Support
-
-- Open an [issue](https://github.com/shayc/obf-utils/issues) for help or questions.
-- Maintained by [Shay Cojocaru](https://github.com/shayc).
